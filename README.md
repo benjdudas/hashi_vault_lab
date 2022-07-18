@@ -37,7 +37,7 @@ ansible-playbook deploy_vault.yml
 **Usage:**
 ------
 1) Verify installation using: `oc get all -n vault-lab`
-2) Initialize Vault and save token/unseal keys to a local file `token_seal:
+2) Initialize Vault and save token/unseal keys to a local file `token_seal`:
 ~~~
 oc exec -ti vault-0 -n vault-lab -- vault operator init |tee token_seal
 ~~~
