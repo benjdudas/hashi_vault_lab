@@ -39,7 +39,11 @@ ansible-playbook deploy_vault.yml
 1) Verify installation using: `oc get all -n vault-lab`
 2) Initialize Vault:
 
-![vault-init](/assets/images/vault-init.img)
+  ![vault-init](/assets/images/vault-init.img)
+
+3) Once vault has been intiallized, you should now be able to open the UI and login using the "Initial Root Token".
+
+
 
 **Cleanup:**
 ------
