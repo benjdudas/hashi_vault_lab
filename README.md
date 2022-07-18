@@ -50,7 +50,7 @@ gio open http://$(oc get route vault-route -n vault-lab -o json | jq -r .spec.ho
 
 4) Using 3 of the unseal keys listed in step 2, unseal Vault and login using the "Initial Root Token"
 
-**Cleanup:**
+**Cleanup Vault:**
 ------
 ~~~
 ansible-playbook delete_vault.yml
