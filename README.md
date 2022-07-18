@@ -37,13 +37,14 @@ ansible-playbook deploy_vault.yml
 **Usage:**
 ------
 1) Verify installation using: `oc get all -n vault-lab`
-2) Initialize Vault:
-
-  ![vault-init](/assets/images/vault-init.img)
-
-3) Once vault has been intiallized, you should now be able to open the UI and login using the "Initial Root Token".
-
-
+2) Initialize Vault and save token/unseal keys to a local file `token_seal:
+~~~
+oc exec -ti vault-0 -n vault-lab -- vault operator init |tee token_seal
+~~~
+3) Open Hashicorp Vault UI. Route information can be retrieved from `oc get route vault-route -n vault-lab`
+~~~
+gio open http://$(oc get route vault-route -n vault-lab -o json | jq -r .spec.host)
+~~~
 
 **Cleanup:**
 ------
