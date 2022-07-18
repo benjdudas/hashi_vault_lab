@@ -49,7 +49,7 @@ oc exec -ti vault-0 -n vault-lab -- vault operator init |tee token_seal
 
 3) Open Hashicorp Vault UI. To use the command below, json-query must be installed (`sudo dnf install jq`)
 ~~~
-gio open http://$(oc get route vault-route -n vault-lab -o json | jq -r .spec.host)
+/bin/sh -c 'gio open http://$(oc get route vault-route -n vault-lab -o json | jq -r .spec.host)'
 ~~~
 
 4) Using 3 of the unseal keys listed in step 2, unseal Vault and login using the "Initial Root Token"
