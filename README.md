@@ -7,6 +7,7 @@ This lab is intended for testing hashicorp vault integration with Ansible Automa
 **Control Node Requirements:**
 ------
 - helm (https://github.com/helm/helm/releases)
+- oc (https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html)
 - ansible 2.9+
 
 **Variable Options:**
