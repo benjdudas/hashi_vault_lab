@@ -1,0 +1,41 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    helm_chart_url: "https://helm.releases.hashicorp.com"
+
+  tasks:
+    - name: add hashicorp helm repo
+      kubernetes.core.helm_repository:
+        name: hashicorp
+        repo_url: "{{ helm_chart_url }}"
+
+    - name: deploy latest hashicorp vault
+      kubernetes.core.helm:
+        name: vault
+        release_namespace: "{{ vault_namespace | default('vault-lab') }}"
+        create_namespace: true
+        state: present
+        chart_ref: hashicorp/vault
+        values:
+          global:
+            openshift: true
+
+    - name: create route to vault
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Route
+          metadata:
+            name: vault-route
+            namespace: "{{ vault_namespace | default('vault-lab') }}"
+          spec:
+            path: /
+            to:
+              kind: Service
+              name: vault
+            port:
+              targetPort: 8200
+
+...
