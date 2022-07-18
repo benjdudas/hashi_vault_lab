@@ -35,7 +35,7 @@ ansible-galaxy collection install -r ./collections/requirements.yml
 ansible-playbook deploy_vault.yml
 ~~~
 
-**Usage:**
+**Initial Setup:**
 ------
 1) Verify installation using: 
 ~~~
