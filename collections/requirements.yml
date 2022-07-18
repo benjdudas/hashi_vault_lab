@@ -2,7 +2,3 @@
 collections:
   - name: kubernetes.core
     source: https://galaxy.ansible.com/
-
-
-
-
