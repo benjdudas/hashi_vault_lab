@@ -22,7 +22,7 @@ ansible-playbook deploy_vault.yml -e "vault_namespace=<my-namespace>"
 ------
 1) Clone repo:
 ~~~
-git pull https://github.com/benjdudas/hashi_vault_lab.git && cd ./hashi_vault_lab
+git clone https://github.com/benjdudas/hashi_vault_lab.git && cd ./hashi_vault_lab
 ~~~
 
 2) Install required Ansible Collections:
