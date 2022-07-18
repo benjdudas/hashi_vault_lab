@@ -34,6 +34,11 @@ ansible-galaxy collection install -r ./collections/requirements.yml
 ansible-playbook deploy_vault.yml
 ~~~
 
+**Usage:**
+------
+Once the deploy_vault.yml playbook has been run, verify installation:
+![vault-lab](/assets/images/get-all.img)
+
 **Cleanup:**
 ------
 ~~~
