@@ -36,8 +36,9 @@ ansible-playbook deploy_vault.yml
 
 **Usage:**
 ------
-1) verify installation using: `oc get all -n vault-lab`
+1) Verify installation using: `oc get all -n vault-lab`
 2) Initialize Vault:
+
 ![vault-init](/assets/images/vault-init.img)
 
 **Cleanup:**
