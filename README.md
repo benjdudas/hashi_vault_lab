@@ -43,7 +43,7 @@ ansible-playbook deploy_vault.yml
 oc exec -ti vault-0 -n vault-lab -- vault operator init |tee token_seal
 ~~~
 
-3) Open Hashicorp Vault UI.
+3) Open Hashicorp Vault UI. To use the command below, json-query must be installed (`sudo dnf install jq`)
 ~~~
 gio open http://$(oc get route vault-route -n vault-lab -o json | jq -r .spec.host)
 ~~~
