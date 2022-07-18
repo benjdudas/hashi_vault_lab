@@ -5,7 +5,8 @@
 - helm (https://github.com/helm/helm/releases)
 
 
-**Variable Options**
+**Variable Options:**
+------
 Kubernetes namespace can be set with the `vault_namespace` variable. By default this is set to `vault-lab`
 
 For Example:
