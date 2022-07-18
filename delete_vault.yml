@@ -3,11 +3,16 @@
   gather_facts: false
 
   tasks:
+    - pause:
+        prompt: "Are you sure you want to delete the namespace {{ vault_namespace | default('vault-lab') }}? (yes/no)"
+      register: confirm_delete
+
     - name: create route to vault
       kubernetes.core.k8s:
         kind: Namespace
         api_version: v1
         state: absent
         name: "{{ vault_namespace | default('vault-lab') }}"
+      when: confirm_delete.user_input | bool
 
 ...
