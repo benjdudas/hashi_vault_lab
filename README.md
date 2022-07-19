@@ -39,17 +39,17 @@ ansible-playbook deploy_vault.yml
 ------
 1) Verify installation using: 
 ~~~
-oc get all -n vault-lab
+/bin/sh -c 'oc get all -n $(oc whoami | cut -f1 -d"@")-vault-lab'
 ~~~
 
 2) Initialize Vault and save token/unseal keys to a local file `token_seal`:
 ~~~
-oc exec -ti vault-0 -n vault-lab -- vault operator init |tee token_seal
+/bin/sh -c 'oc exec -ti vault-0 -n $(oc whoami | cut -f1 -d"@")-vault-lab -- vault operator init |tee token_seal'
 ~~~
 
 3) Open Hashicorp Vault UI. To use the command below, json-query must be installed (`sudo dnf install jq`)
 ~~~
-/bin/sh -c 'gio open http://$(oc get route vault-route -n vault-lab -o json | jq -r .spec.host)'
+/bin/sh -c 'gio open http://$(oc get route vault-route -n $(oc whoami | cut -f1 -d"@")-vault-lab -o json | jq -r .spec.host)'
 ~~~
 
 4) Using 3 of the unseal keys listed in step 2, unseal Vault and login using the "Initial Root Token"
