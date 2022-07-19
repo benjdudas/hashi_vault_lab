@@ -9,9 +9,6 @@ This lab is intended for testing hashicorp vault integration with Ansible Automa
 - helm (https://github.com/helm/helm/releases)
 - oc (https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html)
 - ansible 2.9+
-- kubernetes >= 12.0.0
-- PyYAML >= 3.11
-- jsonpatch
 
 **Variable Options:**
 ------
