@@ -12,7 +12,7 @@ This lab is intended for testing hashicorp vault integration with Ansible Automa
 
 **Variable Options:**
 ------
-Kubernetes namespace can be set with the `vault_namespace` variable. By default this is set to the value of `oc whoami | cut -f1 -d"@" + '-' vault-lab`
+Kubernetes namespace can be set with the `vault_namespace` variable. By default this is set to the value of `oc whoami | cut -f1 -d"@" + '-' + vault-lab`
 
 ~~~
 ansible-playbook deploy_vault.yml -e "vault_namespace=<my-namespace>"
