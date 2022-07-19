@@ -1,10 +1,20 @@
 ---
 - hosts: localhost
   gather_facts: false
+  vars:
+    suffix_ns: vault-lab
 
   tasks:
+    - name: get namspace prefix
+      ansible.builtin.shell: oc whoami | cut -f1 -d"@"
+      register: prefix_ns
+
+    - name: debug prefix_ns
+      ansible.builtin.set_fact:
+        vault_ns: "{{ prefix_ns.stdout + '-' + suffix_ns }}"
+
     - pause:
-        prompt: "Are you sure you want to delete the namespace {{ vault_namespace | default('vault-lab') }}? (yes/no)"
+        prompt: "Are you sure you want to delete the namespace {{ vault_namespace | default(vault_ns) }}? (yes/no)"
       register: confirm_delete
 
     - name: create route to vault
@@ -12,7 +22,7 @@
         kind: Namespace
         api_version: v1
         state: absent
-        name: "{{ vault_namespace | default('vault-lab') }}"
+        name: "{{ vault_namespace | default(vault_ns) }}"
       when: confirm_delete.user_input | bool
 
 ...

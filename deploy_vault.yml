@@ -3,6 +3,7 @@
   gather_facts: false
   vars:
     helm_chart_url: "https://helm.releases.hashicorp.com"
+    suffix_ns: vault-lab
 
   tasks:
     - name: add hashicorp helm repo
@@ -10,10 +11,18 @@
         name: hashicorp
         repo_url: "{{ helm_chart_url }}"
 
+    - name: get namspace prefix
+      ansible.builtin.shell: oc whoami | cut -f1 -d"@"
+      register: prefix_ns
+
+    - name: debug prefix_ns
+      ansible.builtin.set_fact:
+        vault_ns: "{{ prefix_ns.stdout + '-' + suffix_ns }}"
+
     - name: deploy latest hashicorp vault
       kubernetes.core.helm:
         name: vault
-        release_namespace: "{{ vault_namespace | default('vault-lab') }}"
+        release_namespace: "{{ vault_namespace | default(vault_ns) }}"
         create_namespace: true
         state: present
         chart_ref: hashicorp/vault
@@ -29,7 +38,7 @@
           kind: Route
           metadata:
             name: vault-route
-            namespace: "{{ vault_namespace | default('vault-lab') }}"
+            namespace: "{{ vault_namespace | default(vault_ns) }}"
           spec:
             path: /
             to:
